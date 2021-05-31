@@ -1,6 +1,5 @@
 const express = require('express');
 
-const app = express();
 const PORT = 3001;
 const app = express();
 
@@ -42,7 +41,7 @@ app.post('/api/notes', (req, res) => {
             res.status(500).json(err);
         } else {
             const oldNotes = JSON.parse(data);
-            req.body.id = uuidv4();
+            // req.body.id = uuidv4();
             const newNotes = [req.body, ...oldNotes];
             fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(newNotes), (err) => {
                 if(err) {
