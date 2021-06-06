@@ -5,7 +5,7 @@ const app = express();
 
 const fs = require('fs');
 const path = require('path');
-// const { v4: uuidv4 } = require('uuid'); Not sure what this is up to just yet
+const { v4: uuidv4 } = require('uuid'); 
 
 app.use(express.static('public'));
 
@@ -40,7 +40,7 @@ app.post('/api/notes', (req, res) => {
             res.status(500).json(err);
         } else {
             const oldNotes = JSON.parse(data);
-            // req.body.id = uuidv4();
+            req.body.id = uuidv4();
             const newNotes = [req.body, ...oldNotes];
             fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(newNotes), (err) => {
                 if(err) {
@@ -57,7 +57,8 @@ app.delete('/api/notes/:id', (req, res) => {
     const id = req.params.id;
     fs.readFile(path.join(__dirname, './db/db.json'), 'utf8', (err, data) => {
         if(err){
-            res.status(500).json(err);
+            console.log(err)
+            res.status(500).json(err);      
         } else {
             const oldNotes = JSON.parse(data);
             const newNotes = oldNotes.filter((note) => {
@@ -65,6 +66,7 @@ app.delete('/api/notes/:id', (req, res) => {
             });
             fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(newNotes), (err) => {
                 if(err) {
+                    console.log(err)
                     res.status(500).json(err);
                 } else {
                     res.json(newNotes);
