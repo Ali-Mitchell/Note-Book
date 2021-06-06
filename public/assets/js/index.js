@@ -51,7 +51,7 @@ const deleteNote = (id) =>
   });
 
 const renderActiveNote = () => {
-  hide(saveNoteBtn);
+  show(saveNoteBtn);
 
   if (activeNote.id) {
     noteTitle.setAttribute('readonly', true);
@@ -110,11 +110,11 @@ const handleNewNoteView = (e) => {
 };
 
 const handleRenderSaveBtn = () => {
-  if (!noteTitle.value.trim() || !noteText.value.trim()) {
-    hide(saveNoteBtn);
-  } else {
+  // if (!noteTitle.value.trim() || !noteText.value.trim()) {
+  //   hide(saveNoteBtn);
+  // } else {
     show(saveNoteBtn);
-  }
+  // }
 };
 
 // Render the list of note titles
