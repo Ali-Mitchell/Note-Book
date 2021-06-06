@@ -10,7 +10,6 @@
   * [Usage](#usage)
   * [License](#license)
   * [Contribution](#contribution)
-  * [Tests](#tests)
   * [Questions](#questions)
   
   ## Installation 
@@ -21,9 +20,5 @@
   This project does not have any licensing.
   ## Contribution
   This project was created by Ali-Mitchell Got to [Github](https://www.github.com/undefined)
-  Special instructions for contributing:
-  None
-  ## Tests
-  undefined
   ## Questions
   For questions please contact: ali.mitchel.n@gmail.com

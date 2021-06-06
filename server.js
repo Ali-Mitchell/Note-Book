@@ -7,6 +7,8 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid'); 
 
+// middleware 
+
 app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: true}));
@@ -39,9 +41,10 @@ app.post('/api/notes', (req, res) => {
         if(err){
             res.status(500).json(err);
         } else {
-            const oldNotes = JSON.parse(data);
+            const existingNotes = JSON.parse(data);
             req.body.id = uuidv4();
-            const newNotes = [req.body, ...oldNotes];
+            const newNotes = [req.body, ...existingNotes];
+            console.log(newNotes);
             fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(newNotes), (err) => {
                 if(err) {
                     res.status(500).json(err);
